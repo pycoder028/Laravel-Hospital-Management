@@ -41,7 +41,7 @@ class HomeController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->date = $request->date;
-        $data->phone = $request->phone;
+        $data->phone = $request->number;
         $data->message = $request->message;
         $data->doctor = $request->doctor;
         $data->status = 'In progress';
@@ -56,7 +56,35 @@ class HomeController extends Controller
 
     } // Method end here
 
+    public function myappointment(){
 
+        if(Auth::id()){
+
+            $userid = Auth::user()->id;
+
+            $appoint = appointment::where('user_id', $userid)->get();
+
+            return view('user.partials.my_appointment', compact('appoint'));
+        }else{
+            return redirect()->back();
+        }
+
+        
+    } // Method end here
+
+    public function cancel_appointment($id){
+
+        $data = appointment::findOrFail($id);
+
+        $data->delete();
+
+        return redirect()->back();
+        
+    } // Method end here
+
+
+    
+    
 }
 
 

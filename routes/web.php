@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 /* Home Routes */
 Route::get('/', [HomeController::class,'index']);
 Route::post('/appointment', [HomeController::class,'appointment']);
+Route::get('/myappointment', [HomeController::class,'myappointment']);
+Route::get('/cancel_appointment/{id}', [HomeController::class,'cancel_appointment']);
+
+
 
 /* user and admin multi user route */
 Route::get('/home', [HomeController::class,'redirect']);
