@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 /* Home Routes */
 Route::get('/', [HomeController::class,'index']);
+Route::post('/appointment', [HomeController::class,'appointment']);
 
 /* user and admin multi user route */
 Route::get('/home', [HomeController::class,'redirect']);
@@ -34,3 +35,4 @@ Route::middleware([
 /* Admin routes */
 Route::get('/add_doctor_view', [AdminController::class,'addview']);
 Route::post('/upload_doctor', [AdminController::class,'upload']);
+
