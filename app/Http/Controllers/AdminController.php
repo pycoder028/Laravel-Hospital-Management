@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Doctor;
+use App\Models\Appointment;
 
 class AdminController extends Controller
 {
@@ -36,5 +37,27 @@ class AdminController extends Controller
         
     }   // End method here
 
+    public function showappointments(){
+
+        $data = appointment::all();
+
+        return view('admin.pages.showappointment',compact('data'));
+    }   // End method here
+
+    public function approved($id){
+
+        $data = appointment::findOrFail($id);
+        $data->status = 'approved';
+        $data->save();
+        return redirect()->back();
+    }   // End method here
+
+    public function canceled($id){
+
+        $data = appointment::findOrFail($id);
+        $data->status = 'canceled';
+        $data->save();
+        return redirect()->back();
+    }   // End method here
 
 }
